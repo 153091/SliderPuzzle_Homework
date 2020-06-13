@@ -10,8 +10,6 @@ public class Solver {
     private Node badTwin; // если решается он, то оригинал не решится
     private int numOfMove;
     private boolean solvable;
-    private MinPQ<Node> openQueue;  // used for the original Board
-    private MinPQ<Node> twinQueue; // used for the twin Board
     private Stack<Board> step; // сюда записывать все шаги от победного к началу
 
     //задаем Ноде
@@ -44,8 +42,9 @@ public class Solver {
         if (initial == null)
         { throw new IllegalArgumentException("The initial board is NULL!"); }
 
-        openQueue = new MinPQ<Node>();
-        twinQueue = new MinPQ<Node>();
+        MinPQ<Node> openQueue = new MinPQ<Node>(); // чтобы вытаскивать Боард с мин.Манхеттен
+        MinPQ<Node> twinQueue = new MinPQ<Node>(); // чтобы вытаскивать плохих близнецов
+
         solvable = false; //изначально так
         numOfMove = -1; // -1 т.к. 4 борда являются 3-мя шагами, т.к. первый не в счет
         start = new Node(initial, 0, null); // задать стартовый Борд
