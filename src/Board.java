@@ -1,11 +1,11 @@
+import edu.princeton.cs.algs4.Stack;
 import java.util.Arrays;
-import java.util.Stack;
 
 public class Board {
 
     private int[] board;
-    private int size;
-    private int sizeSquare;
+    private final int size;
+    private final int sizeSquare;
 
     // create a board from an n-by-n array of tiles,
     // where tiles[row][col] = tile at (row, col)
@@ -13,7 +13,7 @@ public class Board {
         size = tiles.length;
         sizeSquare = size*size;
         board = new int[sizeSquare];
-        for(int i = 0 ; i < size; i++)
+        for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
                 board[i*size + j] = tiles[i][j];
     }
@@ -48,10 +48,10 @@ public class Board {
     // sum of Manhattan distances between tiles and goal
     public int manhattan() {
         int score = 0;
-        for (int i = 0 ; i < sizeSquare; i++)
+        for (int i = 0; i < sizeSquare; i++)
             //если боард[i]=0 - не в счет
             if (board[i] != 0)
-                score += Math.abs((board[i] - 1)/size - i/size) + Math.abs((board[i] - 1)%size - i%size);
+                score += Math.abs((board[i] - 1)/size - i/size) + Math.abs((board[i] - 1) % size - i % size);
             return score;
     }
 
@@ -63,6 +63,7 @@ public class Board {
     //???
     // does this board equal y?
     public boolean equals(Object y) {
+        if (y == null) return false;
         Board that = (Board) y;
         return Arrays.equals(this.board, that.board);
     }
@@ -73,7 +74,7 @@ public class Board {
         Stack<Board> sosedi = new Stack<Board>();
         int zeroIndex = findZero();
 
-        //int[] copy = board.clone(); // нужно ли это????
+        // int[] copy = board.clone(); // нужно ли это????
 
         int i = zeroIndex/size;
         int j = zeroIndex % size;
@@ -99,14 +100,14 @@ public class Board {
             //свап будет между 0-1 или 3-4  [3x3]
             while (i == index || i + 1 == index || (i + 1)/size - i/size > 0) i++;
 
-            int swap = blocks[i/size][i%size]; //(i/size) = i; (i%size) = j
-            blocks[i/size][i%size] = blocks[i/size][i%size + 1];
-            blocks[i/size][i%size + 1] = swap;
+            int swap = blocks[i/size][i % size]; //(i/size) = i; (i%size) = j
+            blocks[i/size][i % size] = blocks[i/size][i % size + 1];
+            blocks[i/size][i % size + 1] = swap;
         return new Board(blocks);
     }
 
     private int findZero() {
-        for (int i = 0 ; i < sizeSquare; i++)
+        for (int i = 0; i < sizeSquare; i++)
             if (board[i] == 0) return i;
             return -1;
     }
@@ -125,7 +126,7 @@ public class Board {
     }
 
     // создаст новый элемент Board из массива
-    private Board makeBoard(int[] array){
+    private Board makeBoard(int[] array) {
         int[][] newBoard = new int[size][size];
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++)
@@ -134,6 +135,6 @@ public class Board {
     }
 
     // unit testing (not graded)
-    public static void main(String[] args) {}
+    public static void main(String[] args) { }
 
 }

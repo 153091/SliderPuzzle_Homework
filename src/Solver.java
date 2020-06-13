@@ -41,7 +41,7 @@ public class Solver {
 
     // find a solution to the initial board (using the A* algorithm)
     public Solver(Board initial) {
-        if(initial == null)
+        if (initial == null)
         { throw new IllegalArgumentException("The initial board is NULL!"); }
 
         openQueue = new MinPQ<Node>();
@@ -49,7 +49,7 @@ public class Solver {
         solvable = false; //изначально так
         numOfMove = -1; // -1 т.к. 4 борда являются 3-мя шагами, т.к. первый не в счет
         start = new Node(initial, 0, null); // задать стартовый Борд
-        badTwin = new Node(start.board.twin(), 0 , null); // плохой близнец для стартового Борда
+        badTwin = new Node(start.board.twin(), 0, null); // плохой близнец для стартового Борда
         openQueue.insert(start); // очередь для оригинала
         twinQueue.insert(badTwin); // очередь для близнецов
 
