@@ -79,8 +79,8 @@ public class Board {
         int j = zeroIndex % size;
         if (valid(i, j + 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex + 1)));
         if (valid(i, j - 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex - 1)));
-        if (valid(i, j + 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex + size)));
-        if (valid(i, j + 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex - size)));
+        if (valid(i+1, j)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex + size)));
+        if (valid(i-1, j)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex - size)));
         return sosedi;
     }
 
