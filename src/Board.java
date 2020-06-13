@@ -73,14 +73,14 @@ public class Board {
         Stack<Board> sosedi = new Stack<Board>();
         int zeroIndex = findZero();
 
-        int[] copy = board.clone(); // нужно ли это????
+        //int[] copy = board.clone(); // нужно ли это????
 
         int i = zeroIndex/size;
         int j = zeroIndex % size;
-        if (valid(i, j + 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex + 1)));
-        if (valid(i, j - 1)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex - 1)));
-        if (valid(i+1, j)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex + size)));
-        if (valid(i-1, j)) sosedi.push(makeBoard(swap(copy, zeroIndex, zeroIndex - size)));
+        if (valid(i, j + 1)) sosedi.push(makeBoard(swap(board, zeroIndex, zeroIndex + 1)));
+        if (valid(i, j - 1)) sosedi.push(makeBoard(swap(board, zeroIndex, zeroIndex - 1)));
+        if (valid(i+1, j)) sosedi.push(makeBoard(swap(board, zeroIndex, zeroIndex + size)));
+        if (valid(i-1, j)) sosedi.push(makeBoard(swap(board, zeroIndex, zeroIndex - size)));
         return sosedi;
     }
 
